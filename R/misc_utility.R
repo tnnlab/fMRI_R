@@ -132,7 +132,9 @@ addcenterscaletolist<-function(list) {
 cfg_info<-function(cfgpath=NULL,noproc=F) {
   if (is.null(cfgpath)) {stop("No cfg file supplied!")}
   pre.sym<-system("env",intern = T)
-  sysm.temp<-system(paste("source",cfgpath,"\n","env"),intern = T)
+  print(cfgpath)
+  system(paste("source",cfgpath), intern=T)
+  sysm.temp<-system("env", intern = T)
   sysm<-sysm.temp[which(!sysm.temp %in% pre.sym)]
   sysm<-sysm[!grepl("()",sysm,fixed = T)]
   larg<-regmatches(sysm, regexpr("=", sysm), invert = TRUE)
