@@ -133,7 +133,7 @@ cfg_info<-function(cfgpath=NULL,noproc=F) {
   if (is.null(cfgpath)) {stop("No cfg file supplied!")}
   pre.sym<-system("env",intern = T)
   print(cfgpath)
-  system(paste("source",cfgpath), intern=T)
+  system(paste(".",cfgpath), intern=T)
   sysm.temp<-system("env", intern = T)
   sysm<-sysm.temp[which(!sysm.temp %in% pre.sym)]
   sysm<-sysm[!grepl("()",sysm,fixed = T)]
