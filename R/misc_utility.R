@@ -13,10 +13,12 @@ fsl_2_sys_env<-function(bashprofilepath=NULL,force=T){
     if(file.exists(bashprofilepath)) {
       print("Using user .bashprofile")
       fslinfo<-cfg_info(bashprofilepath)
-      pathx<-unique(strsplit(fslinfo$PATH,":")[[1]])
-      afni_path<-pathx[which(grepl("/abin",pathx) | grepl("/afni",pathx))]
-      if(length(afni_path)==1) {fslinfo$AFNIDIR <- afni_path}
-      info_to_sysenv(fslinfo)
+      if(length(fslinfo)>0){
+        pathx<-unique(strsplit(fslinfo$PATH,":")[[1]])
+        afni_path<-pathx[which(grepl("/abin",pathx) | grepl("/afni",pathx))]
+        if(length(afni_path)==1) {fslinfo$AFNIDIR <- afni_path}
+        info_to_sysenv(fslinfo)
+      }
     }
   }
 }
