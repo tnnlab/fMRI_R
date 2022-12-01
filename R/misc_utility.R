@@ -138,9 +138,9 @@ cfg_info<-function(cfgpath=NULL,noproc=F,use_source=F) {
   if (use_source) {
     sysm.temp<-system(paste("source",cfgpath,"\n","env"),intern = T)
   } else {
-    sysm.temp<-system(paste(".",cfgpath),intern = T)
+    sysm.temp<-system(paste("set -x;.", cfgpath),intern = T)
   }   
-  sysm<-sysm.temp[which(!sysm.temp %in% pre.sym)]
+  sysm<-sysm.temp #[which(!sysm.temp %in% pre.sym)]
   sysm<-sysm[!grepl("()",sysm,fixed = T)]
   larg<-regmatches(sysm, regexpr("=", sysm), invert = TRUE)
   xout<-as.environment(list())
