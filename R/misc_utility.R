@@ -129,12 +129,17 @@ addcenterscaletolist<-function(list) {
   return(newlist)
 }
 
-cfg_info<-function(cfgpath=NULL,noproc=F) {
+cfg_info<-function(cfgpath=NULL,noproc=F,use_source=F) {
   if (is.null(cfgpath)) {stop("No cfg file supplied!")}
   pre.sym<-system("env",intern = T)
   print(cfgpath)
-  system(paste(".",cfgpath), intern=T)
-  sysm.temp<-system("env", intern = T)
+  #system(paste(".",cfgpath), intern=T)
+  #sysm.temp<-system("env", intern = T)
+  if (use_source) {
+    sysm.temp<-system(paste("source",cfgpath,"\n","env"),intern = T)
+  } else {
+    sysm.temp<-system(paste(".",cfgpath,"\n","env"),intern = T)
+  }   
   sysm<-sysm.temp[which(!sysm.temp %in% pre.sym)]
   sysm<-sysm[!grepl("()",sysm,fixed = T)]
   larg<-regmatches(sysm, regexpr("=", sysm), invert = TRUE)
