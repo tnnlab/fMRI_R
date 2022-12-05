@@ -8,6 +8,7 @@ cleanuplist<-function(listx){
 }
 
 fsl_2_sys_env<-function(bashprofilepath=NULL,force=T){
+  return()
   if (is.null(bashprofilepath)){bashprofilepath<-file.path(Sys.getenv("HOME"),".bash_profile")}
   if (length(system("env | grep 'FSL' ",intern = T))<1 | force) {
     if(file.exists(bashprofilepath)) {
