@@ -110,7 +110,8 @@ fsl_pipe<-function(argu=NULL, #This is the arguments environment, each model sho
   
   if(is.null(argu$lvl1_volinfo)) {
     message("####!!!!No project configuration object found in argu environment. Will use default one for DependLab Option!!!####")
-    argu$lvl1_infodf <- gen_project_config_wCFG(cfg = cfg_info(argu$cfgpath),
+    info <- cfg_info(argu$cfgpath)
+    argu$lvl1_infodf <- gen_project_config_wCFG(cfg = info,
                                                 bID_array = names(prep.call.allsub),
                                                 input_nii_pattern = argu$name_func_nii,
                                                 add_nuisance = argu$lvl1_proc_nuisance)

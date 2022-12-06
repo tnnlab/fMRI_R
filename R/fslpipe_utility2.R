@@ -68,7 +68,7 @@ make_signal_with_grid<-function(outputdata=NULL,dsgrid=NULL,...) {
 
 
 gen_project_config_wCFG <- function(cfg=NULL,bID_array=NULL,input_nii_pattern = NULL,add_nuisance=F) {
-  
+  print(cfg$loc_mrproc_root)
   dfa <- data.frame(ID = bID_array, behavioral_data = TRUE, 
                     stringsAsFactors = F)
   dfb_c <- data.frame(ID = list.dirs(cfg$loc_mrproc_root, full.names = F, 
